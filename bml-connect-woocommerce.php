@@ -59,7 +59,6 @@ class BML_Connect_WooCommerce {
 
         add_action('plugins_loaded', [$this, 'init']);
         add_filter('woocommerce_payment_gateways', [$this, 'add_gateway']);
-        add_action('admin_menu', [$this, 'add_menu']);
         
         // Add settings link on plugin page
         add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links']);
@@ -84,7 +83,6 @@ class BML_Connect_WooCommerce {
         include_once BML_CONNECT_PLUGIN_DIR . 'includes/class-bml-connect-api.php';
         include_once BML_CONNECT_PLUGIN_DIR . 'includes/class-bml-connect-logger.php';
         include_once BML_CONNECT_PLUGIN_DIR . 'includes/class-bml-connect-security.php';
-        include_once BML_CONNECT_PLUGIN_DIR . 'includes/admin/reports-page.php';
         include_once BML_CONNECT_PLUGIN_DIR . 'includes/admin/meta-box.php';
     }
 
@@ -94,20 +92,6 @@ class BML_Connect_WooCommerce {
     public function add_gateway($methods) {
         $methods[] = 'BML_Connect_Gateway';
         return $methods;
-    }
-
-    /**
-     * Add menu items
-     */
-    public function add_menu() {
-        add_submenu_page(
-            'woocommerce',
-            __('BML Connect Reports', 'bml-connect-woocommerce'),
-            __('BML Connect', 'bml-connect-woocommerce'),
-            'manage_woocommerce',
-            'bml-connect-reports',
-            [$this, 'reports_page']
-        );
     }
 
     /**
@@ -129,13 +113,6 @@ class BML_Connect_WooCommerce {
             '<a href="' . admin_url('admin.php?page=wc-settings&tab=checkout&section=bml_connect') . '">' . __('Settings', 'bml-connect-woocommerce') . '</a>'
         ];
         return array_merge($plugin_links, $links);
-    }
-
-    /**
-     * Reports page
-     */
-    public function reports_page() {
-        include_once BML_CONNECT_PLUGIN_DIR . 'includes/admin/reports-page.php';
     }
 }
 

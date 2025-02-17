@@ -18,36 +18,6 @@
     font-weight: bold;
 }
 
-.bml-connect-reports .tablenav {
-    margin: 1em 0;
-}
-
-.bml-connect-reports .actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.bml-connect-reports table {
-    margin-top: 1em;
-}
-
-.bml-connect-reports .column-amount {
-    width: 15%;
-}
-
-.bml-connect-reports .column-status {
-    width: 10%;
-}
-
-.bml-connect-reports .column-date {
-    width: 15%;
-}
-
-.bml-connect-reports .column-actions {
-    width: 10%;
-}
-
 /* Settings page styles */
 .bml-connect-settings .form-table {
     margin-top: 2em;

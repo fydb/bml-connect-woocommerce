@@ -1,15 +1,4 @@
 jQuery(document).ready(function($) {
-    // Handle date range picker
-    $('.bml-connect-reports input[type="date"]').on('change', function() {
-        var startDate = $('input[name="start_date"]').val();
-        var endDate = $('input[name="end_date"]').val();
-        
-        if (startDate && endDate && startDate > endDate) {
-            alert(bmlConnect.i18n.invalidDateRange);
-            $(this).val('');
-        }
-    });
-    
     // Handle API key visibility toggle
     $('.bml-connect-settings .toggle-password').on('click', function(e) {
         e.preventDefault();
@@ -44,7 +33,7 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'bml_connect_refresh_status',
                 transaction_id: transactionId,
-                nonce: bmlConnect.nonce
+                nonce: button.data('nonce')
             },
             success: function(response) {
                 if (response.success) {
