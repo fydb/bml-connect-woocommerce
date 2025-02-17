@@ -1,0 +1,267 @@
+# Copyright (C) 2025 Mohamed Ailam
+# This file is distributed under the same license as the BML Connect for WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: BML Connect for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bml-connect-woocommerce\n"
+"Last-Translator: MOHAMED AILAM <eyelum@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-02-17T23:17:24+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: bml-connect-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: bml-connect-woocommerce.php
+msgid "BML Connect for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: bml-connect-woocommerce.php
+msgid "https://github.com/fydb/bml-connect-woocommerce"
+msgstr ""
+
+#. Description of the plugin
+#: bml-connect-woocommerce.php
+msgid "Unofficial Bank of Maldives Connect payment gateway integration for WooCommerce. This plugin is not affiliated with, endorsed, or sponsored by Bank of Maldives."
+msgstr ""
+
+#. Author of the plugin
+#: bml-connect-woocommerce.php
+msgid "Your Name"
+msgstr ""
+
+#. Author URI of the plugin
+#: bml-connect-woocommerce.php
+msgid "https://yourdomain.com"
+msgstr ""
+
+#: bml-connect-woocommerce.php:105
+#: includes/admin/reports-page.php:91
+msgid "BML Connect Reports"
+msgstr ""
+
+#: bml-connect-woocommerce.php:106
+msgid "BML Connect"
+msgstr ""
+
+#: bml-connect-woocommerce.php:119
+msgid "BML Connect for WooCommerce requires WooCommerce to be installed and active."
+msgstr ""
+
+#: bml-connect-woocommerce.php:129
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/meta-box.php:19
+msgid "BML Connect Transaction (Unofficial)"
+msgstr ""
+
+#: includes/admin/meta-box.php:41
+msgid "No BML Connect transaction found for this order."
+msgstr ""
+
+#: includes/admin/meta-box.php:48
+msgid "Transaction ID:"
+msgstr ""
+
+#: includes/admin/meta-box.php:52
+msgid "Amount:"
+msgstr ""
+
+#: includes/admin/meta-box.php:56
+msgid "Status:"
+msgstr ""
+
+#: includes/admin/meta-box.php:64
+msgid "Date:"
+msgstr ""
+
+#: includes/admin/meta-box.php:74
+msgid "Refresh Status"
+msgstr ""
+
+#: includes/admin/meta-box.php:89
+msgid "Permission denied."
+msgstr ""
+
+#: includes/admin/meta-box.php:94
+msgid "Invalid transaction ID."
+msgstr ""
+
+#: includes/admin/meta-box.php:124
+#: includes/class-bml-connect-gateway.php:176
+#: includes/class-bml-connect-gateway.php:243
+msgid "BML Connect payment completed."
+msgstr ""
+
+#: includes/admin/meta-box.php:129
+#: includes/class-bml-connect-gateway.php:182
+#: includes/class-bml-connect-gateway.php:249
+msgid "BML Connect payment failed."
+msgstr ""
+
+#: includes/admin/meta-box.php:134
+#: includes/class-bml-connect-gateway.php:188
+#: includes/class-bml-connect-gateway.php:255
+msgid "BML Connect payment cancelled."
+msgstr ""
+
+#: includes/admin/reports-page.php:103
+msgid "All Statuses"
+msgstr ""
+
+#: includes/admin/reports-page.php:104
+msgid "Completed"
+msgstr ""
+
+#: includes/admin/reports-page.php:105
+msgid "Pending"
+msgstr ""
+
+#: includes/admin/reports-page.php:106
+msgid "Failed"
+msgstr ""
+
+#: includes/admin/reports-page.php:107
+msgid "Cancelled"
+msgstr ""
+
+#: includes/admin/reports-page.php:110
+msgid "Filter"
+msgstr ""
+
+#: includes/admin/reports-page.php:118
+msgid "Order ID"
+msgstr ""
+
+#: includes/admin/reports-page.php:119
+msgid "Transaction ID"
+msgstr ""
+
+#: includes/admin/reports-page.php:120
+msgid "Amount"
+msgstr ""
+
+#: includes/admin/reports-page.php:121
+msgid "Status"
+msgstr ""
+
+#: includes/admin/reports-page.php:122
+msgid "Date"
+msgstr ""
+
+#: includes/admin/reports-page.php:123
+msgid "Actions"
+msgstr ""
+
+#: includes/admin/reports-page.php:145
+msgid "View Order"
+msgstr ""
+
+#: includes/admin/reports-page.php:152
+msgid "No transactions found."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:18
+msgid "BML Connect (Unofficial)"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:19
+msgid "Accept payments through Bank of Maldives Connect. This is an unofficial plugin not affiliated with Bank of Maldives."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:49
+msgid "Enable/Disable"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:51
+msgid "Enable BML Connect"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:55
+msgid "Test Mode"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:57
+msgid "Enable Test Mode"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:59
+msgid "Place the payment gateway in test mode."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:62
+msgid "Title"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:64
+msgid "Payment method title that the customer will see on your checkout."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:65
+msgid "Bank of Maldives"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:69
+msgid "Description"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:71
+msgid "Payment method description that the customer will see on your checkout."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:72
+msgid "Pay securely using your Bank of Maldives card."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:76
+msgid "Merchant ID"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:78
+msgid "Enter your BML Connect Merchant ID."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:83
+msgid "API Key"
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:85
+msgid "Enter your BML Connect API Key."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:125
+msgid "Awaiting BML Connect payment."
+msgstr ""
+
+#: includes/class-bml-connect-gateway.php:194
+msgid "BML Connect payment pending."
+msgstr ""
+
+#: includes/class-bml-connect-security.php:28
+msgid "BML Connect requires SSL certificate to be installed for secure payment processing."
+msgstr ""
+
+#: includes/class-bml-connect-security.php:66
+msgid "Missing required field: %s"
+msgstr ""
+
+#: includes/class-bml-connect-security.php:72
+msgid "Invalid amount"
+msgstr ""
+
+#: includes/class-bml-connect-security.php:77
+msgid "Invalid currency"
+msgstr ""
+
+#: includes/class-bml-connect-security.php:88
+msgid "Invalid API response"
+msgstr ""
+
+#: includes/class-bml-connect-security.php:94
+msgid "Missing field in API response: %s"
+msgstr ""

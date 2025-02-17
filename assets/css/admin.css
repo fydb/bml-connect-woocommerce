@@ -1,0 +1,86 @@
+.status-completed {
+    color: #2eb85c;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #f9b115;
+    font-weight: bold;
+}
+
+.status-failed {
+    color: #e55353;
+    font-weight: bold;
+}
+
+.status-cancelled {
+    color: #777;
+    font-weight: bold;
+}
+
+.bml-connect-reports .tablenav {
+    margin: 1em 0;
+}
+
+.bml-connect-reports .actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.bml-connect-reports table {
+    margin-top: 1em;
+}
+
+.bml-connect-reports .column-amount {
+    width: 15%;
+}
+
+.bml-connect-reports .column-status {
+    width: 10%;
+}
+
+.bml-connect-reports .column-date {
+    width: 15%;
+}
+
+.bml-connect-reports .column-actions {
+    width: 10%;
+}
+
+/* Settings page styles */
+.bml-connect-settings .form-table {
+    margin-top: 2em;
+}
+
+.bml-connect-settings .regular-text {
+    width: 400px;
+}
+
+.bml-connect-settings .description {
+    color: #666;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* Order details meta box */
+.bml-connect-transaction-details {
+    margin-top: 1em;
+}
+
+.bml-connect-transaction-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bml-connect-transaction-details th,
+.bml-connect-transaction-details td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.bml-connect-transaction-details th {
+    background: #f8f8f8;
+    font-weight: 600;
+}
