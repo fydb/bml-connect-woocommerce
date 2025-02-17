@@ -10,7 +10,6 @@ This plugin integrates the Bank of Maldives Connect payment gateway with your Wo
 - Transaction management
 - Detailed reporting
 - Order status synchronization
-- Multiple currencies
 - Test mode for development
 
 ## Requirements
@@ -32,9 +31,8 @@ This plugin integrates the Bank of Maldives Connect payment gateway with your Wo
 1. Enable/disable the payment gateway
 2. Enter your Merchant ID
 3. Enter your API Key
-4. Enter your Secret Key
-5. Configure test mode if needed
-6. Save changes
+4. Configure test mode if needed
+5. Save changes
 
 ## Security Features
 
@@ -44,10 +42,6 @@ This plugin integrates the Bank of Maldives Connect payment gateway with your Wo
 - CSRF protection
 - Input sanitization
 - Secure storage of sensitive data
-
-## Support
-
-For support queries, please contact [your support email]
 
 ## Changelog
 
