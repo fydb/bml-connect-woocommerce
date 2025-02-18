@@ -34,11 +34,6 @@ msgstr ""
 msgid "Your Name"
 msgstr ""
 
-#. Author URI of the plugin
-#: bml-connect-woocommerce.php
-msgid "https://yourdomain.com"
-msgstr ""
-
 #: bml-connect-woocommerce.php:105
 #: includes/admin/reports-page.php:91
 msgid "BML Connect Reports"

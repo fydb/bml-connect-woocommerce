@@ -36,7 +36,7 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
         // Hooks
         add_action('woocommerce_update_options_payment_gateways_' . $this->id, [$this, 'process_admin_options']);
         add_action('woocommerce_api_bml_connect', [$this, 'handle_webhook']);
-        add_action('woocommerce_order_status_changed', [$this, 'handle_order_status_change'], 10, 3);
+        add_action('woocommerce_order_status_changed', [$this, 'handle_order_status_change'], 10, 4);
         add_action('bml_connect_check_pending_payments', [$this, 'check_pending_payments']);
     }
     
@@ -90,11 +90,22 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
     }
     
     /**
+     * Validate form fields
+     */
+    public function validate_fields() {
+        return true;
+    }
+
+    /**
      * Process payment
      */
     public function process_payment($order_id) {
         try {
             $order = wc_get_order($order_id);
+            
+            if (!$order) {
+                throw new Exception(__('Order not found', 'bml-connect-woocommerce'));
+            }
             
             // Prepare payment data
             $payment_data = [
@@ -103,7 +114,7 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
                 'orderId' => $order->get_id(),
                 'language' => 'EN',
                 'redirectUrl' => $this->get_return_url($order),
-                'cancelUrl' => $order->get_cancel_order_url(),
+                'cancelUrl' => $order->get_cancel_order_url_raw(),
                 'notificationUrl' => WC()->api_request_url('bml_connect')
             ];
             
@@ -115,16 +126,17 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
             }
             
             // Store transaction reference
-            $order->update_meta_data('_bml_transaction_id', $response['transactionId']);
+            $order->add_meta_data('_bml_transaction_id', $response['transactionId'], true);
             $order->save();
             
             // Save transaction details
             $this->save_transaction_data($order_id, $response);
             
-            // Update order status
-            $order->update_status('pending', __('Awaiting BML Connect payment.', 'bml-connect-woocommerce'));
+            // Update order status with HPOS compatibility
+            $order->set_status('pending', __('Awaiting BML Connect payment.', 'bml-connect-woocommerce'));
+            $order->save();
             
-            // Redirect to payment page
+            // Return success and redirect
             return [
                 'result' => 'success',
                 'redirect' => $response['paymentUrl']
@@ -139,7 +151,7 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
             ];
         }
     }
-    
+
     /**
      * Handle webhook
      */
@@ -172,26 +184,38 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
             switch ($notification['status']) {
                 case 'SUCCESS':
                     if ($order->get_status() === 'pending') {
+                        // Set paid date
+                        $order->set_date_paid(current_datetime());
+                        
+                        // Payment complete
                         $order->payment_complete($notification['transactionId']);
+                        
+                        // Add order note
                         $order->add_order_note(__('BML Connect payment completed.', 'bml-connect-woocommerce'));
+                        
+                        // Save order
+                        $order->save();
                     }
                     break;
                     
                 case 'FAILED':
                     if ($order->get_status() === 'pending') {
-                        $order->update_status('failed', __('BML Connect payment failed.', 'bml-connect-woocommerce'));
+                        $order->set_status('failed', __('BML Connect payment failed.', 'bml-connect-woocommerce'));
+                        $order->save();
                     }
                     break;
                     
                 case 'CANCELLED':
                     if ($order->get_status() === 'pending') {
-                        $order->update_status('cancelled', __('BML Connect payment cancelled.', 'bml-connect-woocommerce'));
+                        $order->set_status('cancelled', __('BML Connect payment cancelled.', 'bml-connect-woocommerce'));
+                        $order->save();
                     }
                     break;
                     
                 case 'PENDING':
                     // Keep the order status as pending
                     $order->add_order_note(__('BML Connect payment pending.', 'bml-connect-woocommerce'));
+                    $order->save();
                     break;
             }
             
@@ -205,7 +229,7 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
             wp_send_json_error(['message' => $e->getMessage()], 400);
         }
     }
-    
+
     /**
      * Check pending payments status
      */
@@ -239,20 +263,24 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
                 switch ($response['status']) {
                     case 'SUCCESS':
                         if ($order->get_status() === 'pending') {
+                            $order->set_date_paid(current_datetime());
                             $order->payment_complete($transaction->transaction_id);
                             $order->add_order_note(__('BML Connect payment completed.', 'bml-connect-woocommerce'));
+                            $order->save();
                         }
                         break;
                         
                     case 'FAILED':
                         if ($order->get_status() === 'pending') {
-                            $order->update_status('failed', __('BML Connect payment failed.', 'bml-connect-woocommerce'));
+                            $order->set_status('failed', __('BML Connect payment failed.', 'bml-connect-woocommerce'));
+                            $order->save();
                         }
                         break;
                         
                     case 'CANCELLED':
                         if ($order->get_status() === 'pending') {
-                            $order->update_status('cancelled', __('BML Connect payment cancelled.', 'bml-connect-woocommerce'));
+                            $order->set_status('cancelled', __('BML Connect payment cancelled.', 'bml-connect-woocommerce'));
+                            $order->save();
                         }
                         break;
                 }
@@ -265,11 +293,11 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
             }
         }
     }
-    
+
     /**
-     * Handle order status changes
+     * Handle order status changes with HPOS compatibility
      */
-    public function handle_order_status_change($order_id, $old_status, $new_status) {
+    public function handle_order_status_change($order_id, $old_status, $new_status, $order) {
         if ($new_status === 'cancelled') {
             $transaction = $this->get_transaction_details($order_id);
             if ($transaction && $transaction->status === 'PENDING') {
@@ -285,7 +313,7 @@ class BML_Connect_Gateway extends WC_Payment_Gateway {
             }
         }
     }
-    
+
     /**
      * Save transaction data
      */

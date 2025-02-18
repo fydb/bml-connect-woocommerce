@@ -1,11 +1,10 @@
 <?php
 /**
  * Plugin Name: BML Connect for WooCommerce
- * Plugin URI: https://yourdomain.com/bml-connect-woocommerce
+ * Plugin URI: https://github.com/fydb/bml-connect-woocommerce
  * Description: Unofficial Bank of Maldives Connect payment gateway integration for WooCommerce. This plugin is not affiliated with, endorsed, or sponsored by Bank of Maldives.
  * Version: 1.0.0
- * Author: Your Name
- * Author URI: https://yourdomain.com
+ * Author: Mohaned Ailam
  * Text Domain: bml-connect-woocommerce
  * Domain Path: /languages
  * Requires at least: 5.0
@@ -62,6 +61,13 @@ class BML_Connect_WooCommerce {
         
         // Add settings link on plugin page
         add_filter('plugin_action_links_' . plugin_basename(__FILE__), [$this, 'plugin_action_links']);
+
+        // Declare HPOS compatibility
+        add_action('before_woocommerce_init', function() {
+            if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+                \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+            }
+        });
     }
 
     /**
